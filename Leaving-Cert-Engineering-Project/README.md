@@ -1,4 +1,4 @@
-![Circuit Diagram](https://github.com/user-attachments/assets/427a4aba-7e12-4a7c-b162-7c2f571e0d15)# Leaving Cert Engineering Project
+# Leaving Cert Engineering Project
 
 Simple Arduino code for my Leaving Cert Engineering Project which uses a servo to open/close the eVTOL door when a button is pressed
 
