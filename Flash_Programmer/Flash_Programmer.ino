@@ -114,7 +114,7 @@ void clearChip() {
   Serial.println("cleared");
 }
 
-byte binToDecOut[] = {
+byte binTo7SegDecOut[] = {
   0b10001000, // 0
   0b11101110, // 1
   0b01001001, // 2
@@ -131,6 +131,10 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
 
+  // This code writes to addresses 0 - 9
+  // Each address contains a byte which will display that respective digit 
+  // on a Common Anode 7 Segment Display
+
   DDRC = 0b11111111; // Data
   DDRA = 0b11111111; // Address 2
   DDRL = 0b11111111; // Address 1
@@ -142,18 +146,14 @@ void setup() {
   PORTB = 0b00110000;
   clearChip();
   delay(100);
-  int hi = 0;
+  int x = 0;
 
-  for (hi; hi < 10; hi++) {
-    writeData(0b00000000, hi, binToDecOut[hi]);
+  for (x; x < 10; x++) {
+    writeData(0b00000000, x, binTo7SegDecOut[x]);
     delay(50);
-    readAddress(0,hi);
+    readAddress(0,x);
     delay(50);
-    Serial.println(String(binToDecOut[hi], BIN));
   }
-//for (int a=0; a < 10; a++) {
-//  readAddress(0,a);
-//}
 
 
   PORTA = 0b00000000;
@@ -166,15 +166,3 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 }
-
-
-
-
-//  int value = 1;
-//  clearChip();
-//  delay(100);
-//  writeData(0b00000000, value, binToDecOut[value]);
-//  readAddress(0, value);
-//  delay(100);
-//  writeData(0b00000000, 2, binToDecOut[2]);
-//  readAddress(0, 2);
